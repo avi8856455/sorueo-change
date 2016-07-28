@@ -120,9 +120,9 @@ namespace UnderratedAIO.Champions
             var barrel = savedBarrels.FirstOrDefault(b => b.barrel.NetworkId == targetB.NetworkId);
             if (barrel != null)
             {
-                var time = (targetB.Health * getEActivationDelay() * 1000) + delay;
+                var time = (targetB.Health * getEActivationDelay() * 1) + delay;
                 if ((System.Environment.TickCount - barrel.time +
-                     (melee ? (sender.AttackCastDelay) : missileTravelTime) * 1000) > time)
+                     (melee ? (sender.AttackCastDelay) : missileTravelTime) * 1) > time)
                 {
                     return true;
                 }
@@ -232,7 +232,7 @@ namespace UnderratedAIO.Champions
                     GetBarrels()
                         .Where(
                             o =>
-                                o.IsValid && !o.IsDead && o.Distance(player) < Q.Range &&
+                                o.IsValid && !o.IsDead &&
                                 o.SkinName == "GangplankBarrel" && o.GetBuff("gangplankebarrellife").Caster.IsMe &&
                                 KillableBarrel(o, false, -260))
                         .OrderBy(o => o.Distance(Game.CursorPos))
